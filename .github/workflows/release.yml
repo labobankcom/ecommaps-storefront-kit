@@ -2,6 +2,9 @@ name: Release
 
 on:
   workflow_dispatch:
+  push:
+    tags:
+      - "v*"
 
 jobs:
   publish:
@@ -32,6 +35,11 @@ jobs:
         run: pnpm build
 
       - name: Publish
-        run: npm publish --access public --provenance
+        if: ${{ secrets.NPM_TOKEN != '' }}
+        run: npm publish --access public --provenance --workspaces=false
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Skip publish (missing NPM_TOKEN)
+        if: ${{ secrets.NPM_TOKEN == '' }}
+        run: echo "::warning::NPM_TOKEN is not configured. Skipping npm publish."

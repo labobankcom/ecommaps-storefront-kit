@@ -23,6 +23,7 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
     "typecheck": "tsc --noEmit",
+    "pack:dry-run": "npm pack --dry-run --workspaces=false",
     "lint": "eslint src/",
     "clean": "rm -rf dist node_modules"
   },
@@ -34,7 +35,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/labobankcom/ecommaps-storefront-kit.git"
+    "url": "git+https://github.com/labobankcom/ecommaps-storefront-kit.git"
   },
   "bugs": {
     "url": "https://github.com/labobankcom/ecommaps-storefront-kit/issues"
